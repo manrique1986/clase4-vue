@@ -18,6 +18,16 @@
 
     <div id="app">
 
+        <div>
+            <mi-tabla
+            v-for="(table, i) in tables" :key="i"
+            :index="i"
+            :titulos="titulos"
+            :products="table.products" >
+            </mi-tabla>
+           
+        </div>
+
     
 
     </div>

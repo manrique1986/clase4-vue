@@ -5,10 +5,14 @@ Vue.component("mi-tabla", {
             required: true
         },
 
-        registros: {
+
+        products: {
             type: Array,
-            required: true
         },
+
+        index: {
+            type: Number
+          },
     },
     template: `
      <div>
@@ -23,12 +27,15 @@ Vue.component("mi-tabla", {
                   
                </tr>
             </thead>
+
             <tbody>
-            <tr v-for="(registro, i) in registros" :key="i">
-                <th>{{ i + 1 }}</th>
-                <th v-for="(row, r) in registro" :key="r">{{row}}</th>
-            </tr>
-        </tbody>
+            <tr  v-for="(product, i) in products" :key="product.id">
+              <td>{{ product.id}}</td>
+              <td>{{ product.nombre }}</td>
+              <td>{{ product.sabor }}</td>
+              <td> $ {{ product.precio }}</td>
+            <tr/>
+          </tbody>
           </table>
 
      </div>
@@ -42,63 +49,130 @@ var app = new Vue({
     el: "#app",
     data: {
 
-        tabla1: {
-            titulos: ["ID", "Nombre", "Sabor", "Precio"],
+        titulos: ["ID", "Nombre", "Sabor", "Precio"],
 
-            registros: [
-                ["Honey", "Dulce", "$ 350"],
-                ["Blonde", "Amarga", "$ 400"],
-                ["Ipa", "Amarga", "$ 400"],
-                ["Scottish", "Dulce", "$ 350"],
-            ],
+        tables: [
+
+            {
+                
+                products: [
+
+                    
+
+                    {
+                        id: 1,
+                        nombre: "Honey",
+                        sabor: "Dulce",
+                        precio: 350,
+
+                    },
+
+                    {
+                        id: 2,
+                        nombre: "Blonde",
+                        sabor: "Amarga",
+                        precio: 400
+                    },
+
+                    {
+                        id: 3,
+                        nombre: "Ipa",
+                        sabor: "Amarga",
+                        precio: 400,
+
+                    },
+
+                    {
+                        id: 4,
+                        nombre: "Scottish",
+                        sabor: "Dulce",
+                        precio: 350
+                    },
+                ],
+
+                class: "table table-primary bg-warning font-weight-light",
 
 
-           
-        },
+            },
 
-        tabla2: {
-            titulos: ["ID", "Nombre", "Sabor", "Precio"],
 
-            registros: [
-                ["Imperial", "Amarga", "$ 350"],
-                ["Stout", "Amarga", "$ 400"],
-                ["Porter", "Amarga", "$ 400"],
-                ["Scotch ale", "Amarga", "$ 500"],
-            ],
+            {
+                products: [
 
-            class: " table table-danger bg-danger font-italic", 
-           
-        },
+                    {
 
-        tabla3: {
-            titulos: ["ID", "Nombre", "Profesion", "Edad"],
 
-            registros: [
-                ["Leandro", "Abogado", " 55"],
-                ["Ariel", "Medico", "40"],
-                ["Santiago", "Futbolista", "20"],
-                ["Ezequiel", "Secretario", "36"],
-            ],
+                        id: 5,
+                        nombre: "Imperial",
+                        sabor: "Amarga",
+                        precio: 350,
 
-            class: "table table-primary bg-warning font-weight-light",
+                    },
 
-           
-        },
+                    {
+                        id: 6,
+                        nombre: "Stout",
+                        sabor: "Amarga",
+                        precio: 450
+                    },
 
-        
-        
+                    {
+                        id: 7,
+                        nombre: "Porter",
+                        sabor: "Amarga",
+                        precio: 300,
+
+                    },
+
+                    {
+                        id: 8,
+                        nombre: "Scotch ale",
+                        sabor: "Dulce",
+                        precio: 500
+                    },
+
+                ]
+
+            },
+
+
+            {
+                products: [
+
+
+
+                    {
+                        id: 9,
+                        nombre: "Bock",
+                        sabor: "Amarga",
+                        precio: 350,
+
+                    },
+
+                    {
+                        id: 10,
+                        nombre: "Rauchbier",
+                        sabor: "Amarga",
+                        precio: 450
+                    },
+
+                    {
+                        id: 11,
+                        nombre: "Wesissbier",
+                        sabor: "Amarga",
+                        precio: 450,
+
+                    },
+
+                    {
+                        id: 12,
+                        nombre: "Honeybeer",
+                        sabor: "Dulce",
+                        precio: 500
+                    }
+                ]
+            }
+        ]
     },
 
-    
-
-    template: `
-    <div>
-        <mi-tabla :titulos="tabla1.titulos" :registros="tabla1.registros" ></mi-tabla>
-        <br>
-        <mi-tabla :titulos="tabla2.titulos" :registros="tabla2.registros"  :class="tabla2.class"></mi-tabla>
-        <br>
-        <mi-tabla :titulos="tabla3.titulos" :registros="tabla3.registros" :class="tabla3.class" ></mi-tabla>
-       
-    </div>
-`
 });
